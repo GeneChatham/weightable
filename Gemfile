@@ -12,6 +12,8 @@ gem 'devise'
 gem 'figaro'
 gem 'foundation-rails'
 gem 'haml-rails'
+gem 'carrierwave'
+gem 'rmagick'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
@@ -19,6 +21,7 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
+  gem 'hirb'
 end
 group :development, :test do
   gem 'factory_girl_rails'

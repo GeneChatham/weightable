@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131220204259) do
+ActiveRecord::Schema.define(version: 20131220210830) do
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "weighin_id"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["weighin_id"], name: "index_comments_on_weighin_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -27,9 +38,24 @@ ActiveRecord::Schema.define(version: 20131220204259) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.text     "profilepic"
+    t.integer  "startweight"
+    t.integer  "desiredweight"
+    t.text     "bio"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "weigh_ins", force: true do |t|
+    t.integer  "user_id"
+    t.text     "weightpic"
+    t.integer  "currentweight"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "weigh_ins", ["user_id"], name: "index_weigh_ins_on_user_id"
 
 end
