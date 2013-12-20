@@ -22,6 +22,7 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'hirb'
+  gem 'nifty-generators'
 end
 group :development, :test do
   gem 'factory_girl_rails'
@@ -36,3 +37,5 @@ group :test do
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
 end
+
+gem "mocha", group: :test

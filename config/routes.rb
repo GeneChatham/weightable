@@ -1,4 +1,5 @@
 Weightable::Application.routes.draw do
+  resources :friendships
   devise_for :users
 
   root 'users#index'
