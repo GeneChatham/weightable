@@ -1,4 +1,10 @@
 Weightable::Application.routes.draw do
+  get "weigh_ins/index"
+  get "weigh_ins/show"
+  get "weigh_ins/create"
+  get "weigh_ins/edit"
+  get "weigh_ins/update"
+  get "weigh_ins/destroy"
   resources :friendships
   devise_for :users
 
