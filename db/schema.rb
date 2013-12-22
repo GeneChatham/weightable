@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 20131220213412) do
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
-    t.integer  "weighin_id"
+    t.integer  "weigh_in_id"
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-  add_index "comments", ["weighin_id"], name: "index_comments_on_weighin_id"
+  add_index "comments", ["weigh_in_id"], name: "index_comments_on_weigh_in_id"
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
