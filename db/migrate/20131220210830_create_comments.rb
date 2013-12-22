@@ -2,7 +2,7 @@ class CreateComments < ActiveRecord::Migration
   def change
     create_table :comments do |t|
       t.references :user, index: true
-      t.references :weighin, index: true
+      t.references :weigh_in, index: true
       t.text :comment
 
       t.timestamps
