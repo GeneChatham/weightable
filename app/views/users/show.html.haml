@@ -4,7 +4,11 @@
 %h3 Weigh-Ins
 %ul 
 	- @user.weigh_ins.each do |user|
+		%li 
+			= user.created_at.strftime('%B %d, %Y, %l:%M %P')
+		%p Current Weight
 		%li
 			= user.currentweight
+		%p Description
 		%li
 			= user.description
