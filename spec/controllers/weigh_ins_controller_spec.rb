@@ -16,9 +16,15 @@ describe WeighInsController do
     end
   end
 
+
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'
+
+  describe "GET 'create'" do
+    it "returns http success" do
+      get 'create'
+
       response.should be_success
     end
   end
@@ -30,6 +36,7 @@ describe WeighInsController do
     end
   end
 
+<<<<<<< HEAD
   describe "GET 'create'" do
     it "returns http success" do
       get 'create'
@@ -37,6 +44,8 @@ describe WeighInsController do
     end
   end
 
+=======
+>>>>>>> 376adfcbb3630b76ebec198b1e1fac5500916016
   describe "GET 'update'" do
     it "returns http success" do
       get 'update'
