@@ -6,7 +6,7 @@ Weightable::Application.routes.draw do
   root 'users#index'
 
   resources :users do
-    resources :weighins do
+    resources :weigh_ins do
       resources :comments
     end
   end
