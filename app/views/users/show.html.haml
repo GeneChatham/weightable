@@ -1,2 +1,10 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+%h1= @user.name
+%p= @user.bio
+
+%h3 Weigh-Ins
+%ul 
+	- @user.weigh_ins.each do |user|
+		%li
+			= user.currentweight
+		%li
+			= user.description
