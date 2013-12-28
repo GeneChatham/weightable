@@ -3,11 +3,9 @@
 
 %h3 Add a Weigh-In
 = form_for [@user, @weigh_in] do |f|
-	= f.label 'How Much Do You Weigh Today?'
-	= f.text_field :currentweight
-	= f.label 'How did you lose it?'
-	= f.text_field :description
-	= f.label 'Upload a picture at current weight'
+	= f.text_field :currentweight, :placeholder => 'How Much Do You Weigh Today?'
+	= f.text_field :description, :placeholder => 'How did you lose it?'
+	= f.label 'Upload a picture at your current weight'
 	= f.file_field :weightpic
 
 	= f.submit 'Create Weigh-In', :class => "button"
