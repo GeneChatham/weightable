@@ -24,6 +24,7 @@
 		%li
 			= link_to 'Edit'
 		%li 
-			= link_to 'Delete', user_weigh_in_path, method: :delete, data: { confirm: 'Are you sure?' }
+			= link_to 'Delete'
+			/ , user_weigh_in_path(@user, @weigh_in), method: :delete, data: { confirm: 'Are you sure?' }
 %br
 %br
