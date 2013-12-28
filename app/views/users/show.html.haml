@@ -8,7 +8,7 @@
 	= f.label 'How did you lose it?'
 	= f.text_field :description
 	= f.label 'Upload a picture at current weight'
-	= f.text_field :weightpic
+	= f.file_field :weightpic
 
 	= f.submit 'Create Weigh-In', :class => "button"
 
@@ -17,11 +17,13 @@
 	- @user.weigh_ins.each do |user|
 		%li 
 			= user.created_at
-			/ .strftime('%B %d, %Y, %l:%M %P')
+			/ strftime("%m/%d/%y at %I:%M%P")
 		%p Current Weight
 		%li
 			= user.currentweight
 		%p Description
 		%li
 			= user.description
+		%li 
+			%img{src: user.weightpic}
 
