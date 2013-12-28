@@ -1,5 +1,10 @@
 class WeighInsController < ApplicationController
 
+  before_action :set_weigh_in, only: [:show, :edit, :update, :destroy]
+
+  def show
+  end
+
   def create
     @user = User.find(params[:user_id])
     @weigh_in = @user.weigh_ins.new(weigh_in_params)
@@ -33,6 +38,12 @@ class WeighInsController < ApplicationController
   end
   
   private
+
+  def set_weigh_in
+    @user = User.find(params[:user_id])
+    @weigh_in = @user.weigh_ins.new(weigh_in_params)
+  end
+
   def weigh_in_params
     params.require(:weigh_in).permit(:user_id, :weightpic, :description, :currentweight)
   end

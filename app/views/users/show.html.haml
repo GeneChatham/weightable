@@ -13,10 +13,11 @@
 %h4 Weigh-Ins
 %ul 
 	- @user.weigh_ins.reverse_each do |user|
+		%img{src: user.weightpic}
 		%li 
 			= user.created_at
 		%li
 			= user.currentweight
-			%img{src: user.weightpic}
+			
 		%li
 			= user.description
