@@ -13,11 +13,12 @@
 %h4 Weigh-Ins
 %ul 
 	- @user.weigh_ins.reverse_each do |user|
-		%img{src: user.weightpic}
 		%li 
-			= user.created_at
+			= "Weigh_in #: #{user.id} -- #{user.created_at}"
+		%img{src: user.weightpic}
 		%li
-			= user.currentweight
-			
+			= "Today I weigh: #{user.currentweight} lbs."
 		%li
-			= user.description
+			= "How I lost the weight: #{user.description}"
+%br
+%br
