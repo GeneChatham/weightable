@@ -14,11 +14,11 @@
 %ul 
 	- @user.weigh_ins.reverse_each do |user|
 		%li 
-			= "Weigh_in #: #{user.id} -- #{user.created_at}"
+			= "Weigh-in #: #{user.id} -- #{user.created_at}"
 		%img{src: user.weightpic}
 		%li
 			= "Today I weigh: #{user.currentweight} lbs."
 		%li
-			= "How I lost the weight: #{user.description}"
+			= "What I did to get to this weight: #{user.description}"
 %br
 %br
