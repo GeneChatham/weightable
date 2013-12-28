@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @weigh_ins = @user.weigh_ins
-    @weigh_in = @user.weigh_ins.build
+    @weigh_in = WeighIn.new user_id: @user.id
   end
 
   def index
