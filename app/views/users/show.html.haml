@@ -1,14 +1,27 @@
 %h1= @user.name
 %p= @user.bio
 
-%h3 Weigh-Ins
+%h3 Add a Weigh-In
+= form_for [@user, @weigh_in] do |f|
+	= f.label 'How Much Do You Weigh Today?'
+	= f.text_field :currentweight
+	= f.label 'How did you lose it?'
+	= f.text_field :description
+	= f.label 'Upload a picture at current weight'
+	= f.text_field :weightpic
+
+	= f.submit 'Create Weigh-In', :class => "button"
+
+%h4 Weigh-Ins
 %ul 
 	- @user.weigh_ins.each do |user|
 		%li 
-			= user.created_at.strftime('%B %d, %Y, %l:%M %P')
+			= user.created_at
+			/ .strftime('%B %d, %Y, %l:%M %P')
 		%p Current Weight
 		%li
 			= user.currentweight
 		%p Description
 		%li
 			= user.description
+

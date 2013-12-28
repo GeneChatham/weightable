@@ -2,6 +2,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @weigh_ins = @user.weigh_ins
+    @weigh_in = @user.weigh_ins.build
   end
 
   def index
