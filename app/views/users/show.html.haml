@@ -14,10 +14,9 @@
 %ul 
 	- @user.weigh_ins.reverse_each do |user|
 		%li 
-			= user.updated_at
+			= user.created_at
 		%li
 			= user.currentweight
-		%li 
 			%img{src: user.weightpic}
 		%li
 			= user.description
