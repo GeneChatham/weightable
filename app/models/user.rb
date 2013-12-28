@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
   has_many :weigh_ins
   has_many :comments
 
+
 end

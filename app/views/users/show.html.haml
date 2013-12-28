@@ -12,9 +12,9 @@
 
 %h4 Weigh-Ins
 %ul 
-	- @user.weigh_ins.each do |user|
+	- @user.weigh_ins.reverse_each do |user|
 		%li 
-			= user.created_at
+			= user.updated_at
 			/ strftime("%m/%d/%y at %I:%M%P")
 		%p Current Weight
 		%li
@@ -24,5 +24,3 @@
 		%p Description
 		%li
 			= user.description
-		
-
