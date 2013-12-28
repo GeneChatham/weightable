@@ -15,12 +15,9 @@
 	- @user.weigh_ins.reverse_each do |user|
 		%li 
 			= user.updated_at
-			/ strftime("%m/%d/%y at %I:%M%P")
-		%p Current Weight
 		%li
 			= user.currentweight
 		%li 
 			%img{src: user.weightpic}
-		%p Description
 		%li
 			= user.description
