@@ -14,8 +14,8 @@
 %ul 
 	- @user.weigh_ins.reverse_each do |user|
 		- next if user.new_record?
-		%li 
-			= "Weigh-in #: #{user.id} -- #{user.created_at}"
+		%h5 
+			= "Weigh-in ##{user.id}: #{user.created_at.strftime("%m/%d/%y at %I:%M%P")}"
 		- if user.weightpic.blank?
 			no image
 		- else
