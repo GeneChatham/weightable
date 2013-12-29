@@ -16,7 +16,10 @@
 		- next if user.new_record?
 		%li 
 			= "Weigh-in #: #{user.id} -- #{user.created_at}"
-		%img{src: user.weightpic}
+		- if user.weightpic.blank?
+			no image
+		- else
+			%img{src: user.weightpic.url(:medium)}
 		%li
 			= "Today I weigh: #{user.currentweight} lbs."
 		%li
