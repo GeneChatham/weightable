@@ -1,10 +1,11 @@
 %h1 Users
 
 %table
-	%thead
-		%th Name
+	%thead.users
+		%th.users Name
+		%th.users About
 	%tbody
 	- @users.each do |user|
 		%tr
 			%td= link_to user.name, user
-          
+			%td= user.bio
