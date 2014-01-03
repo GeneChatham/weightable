@@ -1,0 +1,14 @@
+%h4 Edit Weigh-In 
+= form_for(@weigh_in) do |f|
+  - if @weigh_in.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@weigh_in.errors.count, "error")} prohibited this weigh-in from being saved:"
+      %ul
+        - @weigh_in.errors.full_messages.each do |msg|
+          %li= msg
+
+    = f.label :currentweight
+    = f.text_field :currentweight
+    = f.hidden_field :weigh_in_id, value: @weigh_in.id
+    
+    = f.submit 'Save'

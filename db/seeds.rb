@@ -47,8 +47,9 @@ puts "Created six new users."
 
 Friendship.create(user_id: User.last, friend_id: User.first)
 jafar = User.last
+jafar.weigh_ins.create(user_id: jafar.id, weightpic:"http://static.comicvine.com/uploads/original/10/109732/2060708-GenieJafar.jpg", currentweight: 50, description: "Almost!")
 jafar.weigh_ins.create(user_id: jafar.id, weightpic:"http://static.comicvine.com/uploads/original/10/109732/2060708-GenieJafar.jpg", currentweight: 0, description: "Muwahhahhah!")
 jafar.weigh_ins.first.comments.create(user_id: User.first.id, comment: 'Looking great, Jafar!  Way to go!')
 jafar.save
-puts "Created one WeighIn by Jafar, with one Comment by Ariel.  Jafar and Ariel are now friends."
+puts "Created two WeighIns by Jafar, with one Comment by Ariel.  Jafar and Ariel are now friends."
 

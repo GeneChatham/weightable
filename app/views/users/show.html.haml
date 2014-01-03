@@ -1,0 +1,35 @@
+%h1= @user.name
+%p= @user.bio
+%img{src: @user.profilepic.url(:medium)}
+
+%h3 Add a Weigh-In
+= form_for [@user, @weigh_in] do |f|
+	= f.text_field :currentweight, :placeholder => 'How Much Do You Weigh Today?'
+	= f.text_field :description, :placeholder => 'How did you lose it?'
+	= f.label 'Upload a picture at your current weight'
+	= f.file_field :weightpic
+
+	= f.submit 'Create Weigh-In', :class => "button"
+
+%h4 Weigh-Ins
+%ul 
+	- @user.weigh_ins.reverse_each do |user|
+		- next if user.new_record?
+		%h5 
+			= "Weigh-in ##{user.id}: #{user.created_at.strftime("%m/%d/%y at %I:%M%P")}"
+		- if user.weightpic.blank?
+			<no image>
+		- else
+			%img{src: user.weightpic.url(:medium)}
+		%li
+			= "Today I weigh: #{user.currentweight} lbs."
+		%li
+			= "What I did to get to this weight: #{user.description}"
+		%li
+			%span
+			= link_to 'Edit', '#' 
+			\|
+			%span
+			= link_to ' Delete', '#', method: :delete, data: { confirm: 'Are you sure?' }
+%br
+%br

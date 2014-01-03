@@ -1,11 +1,12 @@
 Weightable::Application.routes.draw do
+  
   resources :friendships
   devise_for :users
 
   root 'users#index'
 
   resources :users do
-    resources :weighins do
+    resources :weigh_ins do
       resources :comments
     end
   end
