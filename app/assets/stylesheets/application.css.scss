@@ -11,3 +11,38 @@
  *= require_self
  *= require_tree .
  */
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+
+main {
+	background: image-url('background.jpg');
+	background-size: cover;
+}
+
+nav.top-bar {
+	background-color: #6ca087;
+}
+
+input.button {
+	background-color: #8baa86;
+}
+
+form {
+	width: 33%;
+}
+
+.weighin {
+	width: 33%;
+}
+
+.users {
+	background-color: #8baa86;
+	color: white;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	border-radius: 20px;
+}
