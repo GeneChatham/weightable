@@ -1,6 +1,12 @@
 %h1= @user.name
 %p= @user.bio
-%img{src: @user.profilepic.url(:medium)}
+
+%p= @user.profilepic
+
+/ %p= 
+/ 	Start Weight: @user.startweight
+/ %p= 
+/ 	Desired Weight: @user.desiredweight
 
 %h3.weighin Add a Weigh-In
 = form_for [@user, @weigh_in] do |f|
