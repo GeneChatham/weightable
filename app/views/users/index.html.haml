@@ -6,7 +6,15 @@
     = current_user.name
     !
 
-  %h2 Other Users
+%h5.search Search for other Users
+= form_tag users_path, :method => 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag "Search", :name => nil
+
+%br
+%br
+%br
+    
 
 %table
   %thead.users

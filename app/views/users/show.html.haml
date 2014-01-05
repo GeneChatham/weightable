@@ -1,6 +1,7 @@
 %h1= @user.name
 %p= @user.bio
 
+
 %h3.friends Friends
 - if @user.friendships.length != 0
 	%table
@@ -8,7 +9,8 @@
 			- @user.friendships.each do |friendship|
 				%tr
 					%td= friendship.friend.name
-					%td= link_to "remove", friendship, :method => :delete
+					- if @user == current_user
+						%td= link_to "remove", friendship, :method => :delete
 - else
 	%p You have Friended no one.&nbsp&nbsp&nbsp:(
 
