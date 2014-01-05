@@ -1,25 +1,32 @@
-- if current_user == nil
-  %h1 Users
-- else
+- if current_user != nil
   %h1
     Welcome, 
     = current_user.name
     !
 
-  %h2 Other Users
+%h5.search Search for Users
+= form_tag users_path, :method => 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag "Search", :name => nil
+
+%br
+%br
+%br
+    
 
 %table
   %thead.users
     %th.users Name
     %th.users About
-    %th.users Friends?
+    - if current_user != nil
+      %th.users Friends?
   %tbody
   - @users.each do |user|
     %tr
       %td= link_to user.name, user
       %td= user.bio
-      - if 
-        %td Friends
-
-
-        if current_user.friendship.user.id
+      - if current_user != nil
+        - if current_user.friendships.find_by_friend_id(user.id)
+          %td Already Friends!
+        - elsif user.id != current_user.id
+          %td= link_to "Add As Friend!", friendships_path(:friend_id => user), :method => :post
