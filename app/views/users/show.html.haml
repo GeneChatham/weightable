@@ -2,19 +2,26 @@
 %p= @user.bio
 
 %h3.friends Friends
-%table
-	%thead
-		%th
-		%th
-	%tbody
-		- @user.friendships.each do |friendship|
-			%tr
-				%td= friendship.friend.name
-				%td= link_to "remove", friendship, :method => :delete
-		- @user.inverse_friendships.each do |inverse_friendship|
-			%tr
-				%td= inverse_friendship.friend.name
-				%td= link_to "remove", inverse_friendship, :method => :delete
+- if @user.friendships.length != 0
+	%table
+		%tbody
+			- @user.friendships.each do |friendship|
+				%tr
+					%td= friendship.friend.name
+					%td= link_to "remove", friendship, :method => :delete
+- else
+	%p You have Friended no one.&nbsp&nbsp&nbsp:(
+
+
+%h3.friends Friended by
+- if @user.inverse_friendships.length != 0
+	%table
+		%tbody				
+			- @user.inverse_friends.each do |inverse_friend|
+				%tr
+					%td= inverse_friend.name
+- else
+	%p No one has Friended you.&nbsp&nbsp&nbsp:(
 
 %h3.weighin Add a Weigh-In
 = form_for [@user, @weigh_in] do |f|
