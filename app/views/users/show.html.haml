@@ -1,4 +1,12 @@
 %h1= @user.name
+- if @user != current_user
+	- if current_user.friends.find_by(name: @user.name)
+		You are already friends!
+	- else
+		= link_to "Add As Friend!", friendships_path(:friend_id => @user), :method => :post
+%br
+%br
+
 %p= @user.bio
 
 
