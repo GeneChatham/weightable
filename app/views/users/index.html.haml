@@ -12,14 +12,15 @@
   %thead.users
     %th.users Name
     %th.users About
-    %th.users Friends?
+    - if current_user != nil
+      %th.users Friends?
   %tbody
   - @users.each do |user|
     %tr
       %td= link_to user.name, user
       %td= user.bio
-      - if 
-        %td Friends
-
-
-        if current_user.friendship.user.id
+      - if current_user != nil
+        - if current_user.friendships.find_by_friend_id(user.id)
+          %td Already Friends!
+        - elsif user.id != current_user.id
+          %td= button_to "Add As Friend!", user_friendships_path(:user_id => current_user.id, :friend_id => user.id) 
