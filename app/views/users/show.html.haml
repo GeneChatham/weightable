@@ -1,12 +1,20 @@
 %h1= @user.name
 %p= @user.bio
 
-%p= @user.profilepic
-
-/ %p= 
-/ 	Start Weight: @user.startweight
-/ %p= 
-/ 	Desired Weight: @user.desiredweight
+%h3.friends Friends
+%table
+	%thead
+		%th
+		%th
+	%tbody
+		- @user.friendships.each do |friendship|
+			%tr
+				%td= friendship.friend.name
+				%td= link_to "remove", friendship, :method => :delete
+		- @user.inverse_friendships.each do |inverse_friendship|
+			%tr
+				%td= inverse_friendship.friend.name
+				%td= link_to "remove", inverse_friendship, :method => :delete
 
 %h3.weighin Add a Weigh-In
 = form_for [@user, @weigh_in] do |f|

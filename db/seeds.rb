@@ -47,7 +47,6 @@ puts "Created six new users."
 
 
 Friendship.create(user_id: User.last.id, friend_id: User.first.id)
-Friendship.create(user_id: User.first.id, friend_id: User.last.id)
 jafar = User.last
 jafar.weigh_ins.create(user_id: jafar.id, weightpic:"http://static.comicvine.com/uploads/original/10/109732/2060708-GenieJafar.jpg", currentweight: 50, description: "Almost!")
 jafar.weigh_ins.create(user_id: jafar.id, weightpic:"http://static.comicvine.com/uploads/original/10/109732/2060708-GenieJafar.jpg", currentweight: 0, description: "Muwahhahhah!")
