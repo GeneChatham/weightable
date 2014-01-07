@@ -1,7 +1,15 @@
-%h3#comment 
+%h4#comment 
   Comments:
   = form_for [user, weigh_in, comment] do |f|
     = f.text_field :comment, :placeholder => 'Words of Encouragement'
     %p= f.submit "Add comment"
 
-    
+  %h5.comment Comments:
+  %ul.comment 
+    - if @comments == nil
+      <no comments>
+    -else
+      - @comments.each do |text|
+        %p 
+          = "#{text.comment}"
+          = "#{text.created_at.strftime("%m/%d/%y at %I:%M%P")}"
