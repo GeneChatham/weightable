@@ -48,18 +48,20 @@
 	- if @user.weigh_ins.length == 0
 		%p No Weigh-Ins Yet!
 	-else
-		- @user.weigh_ins.reverse_each do |user|
-			- next if user.new_record?
+		- @user.weigh_ins.reverse_each do |weigh_in|
+			- next if weigh_in.new_record?
 			%h5 
-				= "Weigh-in ##{user.id}: #{user.created_at.strftime("%m/%d/%y at %I:%M%P")}"
-			- if user.weightpic.blank?
+				= "Weigh-in ##{weigh_in.id}: #{weigh_in.created_at.strftime("%m/%d/%y at %I:%M%P")}"
+			- if weigh_in.weightpic.blank?
 				<no image>
 			- else
-				%img{src: user.weightpic.url(:medium)}
+				%img{src: weigh_in.weightpic.url(:medium)}
 			%li
-				= "Today I weigh: #{user.currentweight} lbs."
+				= "Today I weigh: #{weigh_in.currentweight} lbs."
 			%li
-				= "What I did to get to this weight: #{user.description}"
+				= "What I did to get to this weight: #{weigh_in.description}"
+			%li
+				=render partial: 'comments/comment', locals: {weigh_in: weigh_in, user: @user, comment: @comment}
 			- if @user == current_user
 				%li
 					%span
@@ -72,37 +74,6 @@
 
 %br
 %br
-
-%h3 Comments:
-#comment
-/	= render :partial => @weigh_in.comments
-= div_for (@comment, class: "comment") do
-	%p
-		%strong
-			Posted #{time_ago_in_words(comment.created_at)} ago
-		%br/
-		= comment.comment
-= form_for [@weigh_in, Comment.new] do |f|
-	%pls
-
-		= f.label :body, "New comment"
-		%br/
-		= f.text_area :body
-	%p= f.submit "Add comment"
-
-
-/ <h2>Comments</h2>
-/  <div id="comments">
-/          <%= render :partial => @post.comments %>
-/  </div>
-
-/  <%= form_for [@post, Comment.new] do |f| %>
-/         <p>
-/                 <%= f.label :body, "New comment" %><br/>
-/                 <%= f.text_area :body %>
-/         </p>
-/         <p><%= f.submit "Add comment" %></p>
-/ <% end %>
 
 
 

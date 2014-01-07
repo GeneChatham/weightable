@@ -1,6 +1,7 @@
-= div_for comment do
-  %p
-    %strong
-      Posted #{time_ago_in_words(comment.created_at)} ago
-    %br/
-    = comment.comment
+%h3#comment 
+  Comments:
+  = form_for [user, weigh_in, comment] do |f|
+    = f.text_field :comment, :placeholder => 'Words of Encouragement'
+    %p= f.submit "Add comment"
+
+    
