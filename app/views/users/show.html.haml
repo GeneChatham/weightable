@@ -72,3 +72,40 @@
 
 %br
 %br
+
+%h3 Comments:
+#comment
+/	= render :partial => @weigh_in.comments
+= div_for (@comment, class: "comment") do
+	%p
+		%strong
+			Posted #{time_ago_in_words(comment.created_at)} ago
+		%br/
+		= comment.comment
+= form_for [@weigh_in, Comment.new] do |f|
+	%pls
+
+		= f.label :body, "New comment"
+		%br/
+		= f.text_area :body
+	%p= f.submit "Add comment"
+
+
+/ <h2>Comments</h2>
+/  <div id="comments">
+/          <%= render :partial => @post.comments %>
+/  </div>
+
+/  <%= form_for [@post, Comment.new] do |f| %>
+/         <p>
+/                 <%= f.label :body, "New comment" %><br/>
+/                 <%= f.text_area :body %>
+/         </p>
+/         <p><%= f.submit "Add comment" %></p>
+/ <% end %>
+
+
+
+
+
+
