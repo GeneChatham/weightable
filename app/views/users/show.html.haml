@@ -1,76 +1,78 @@
-%h1= @user.name
-- if @user != current_user
-  - if current_user.friends.find_by(name: @user.name)
-    You are already friends!
+%div.user  
+  %h1= @user.name
+  - if @user != current_user
+    - if current_user.friends.find_by(name: @user.name)
+      You are already friends!
+    - else
+      = link_to "Add As Friend!", friendships_path(:friend_id => @user), :method => :post
+  %br
+  %br
+
+  %p= @user.bio
+
+%div.friends
+  %h3 Friends
+  - if @user.friendships.length != 0
+    %table
+      %tbody
+        - @user.friendships.each do |friendship|
+          %tr
+            %td= friendship.friend.profilepic
+            %td= friendship.friend.name
+            - if @user == current_user
+              %td= link_to "remove", friendship, :method => :delete
   - else
-    = link_to "Add As Friend!", friendships_path(:friend_id => @user), :method => :post
-%br
-%br
-
-%p= @user.bio
+    %p You have Friended no one.&nbsp&nbsp&nbsp:(
 
 
-%h3.friends Friends
-- if @user.friendships.length != 0
-  %table
-    %tbody
-      - @user.friendships.each do |friendship|
-        %tr
-          %td= friendship.friend.name
-          - if @user == current_user
-            %td= link_to "remove", friendship, :method => :delete
-- else
-  %p You have Friended no one.&nbsp&nbsp&nbsp:(
+  %h3 Friended by
+  - if @user.inverse_friendships.length != 0
+    %table
+      %tbody        
+        - @user.inverse_friends.each do |inverse_friend|
+          %tr
+            %td= inverse_friend.name
+  - else
+    %p No one has Friended you.&nbsp&nbsp&nbsp:(
+%div.weighin
+  - if @user == current_user
+    %h3 Add a Weigh-In
+    = form_for [@user, @weigh_in] do |f|
+      = f.text_field :currentweight, :placeholder => 'How Much Do You Weigh Today?'
+      = f.text_field :description, :placeholder => 'How did you lose it?'
+      = f.label 'Upload a picture at your current weight'
+      = f.file_field :weightpic
 
+      = f.submit 'Create Weigh-In', :class => "button"
 
-%h3.friends Friended by
-- if @user.inverse_friendships.length != 0
-  %table
-    %tbody        
-      - @user.inverse_friends.each do |inverse_friend|
-        %tr
-          %td= inverse_friend.name
-- else
-  %p No one has Friended you.&nbsp&nbsp&nbsp:(
-
-- if @user == current_user
-  %h3.weighin Add a Weigh-In
-  = form_for [@user, @weigh_in] do |f|
-    = f.text_field :currentweight, :placeholder => 'How Much Do You Weigh Today?'
-    = f.text_field :description, :placeholder => 'How did you lose it?'
-    = f.label 'Upload a picture at your current weight'
-    = f.file_field :weightpic
-
-    = f.submit 'Create Weigh-In', :class => "button"
-
-%h4.weighin Weigh-Ins
-%ul.weighin 
-  - if @user.weigh_ins.length == 0
-    %p No Weigh-Ins Yet!
-  -else
-    - @user.weigh_ins.reverse_each do |weigh_in|
-      - next if weigh_in.new_record?
-      %h5 
-        = "Weigh-in ##{weigh_in.id}: #{weigh_in.created_at.strftime("%m/%d/%y at %l:%M%P")}"
-      - if weigh_in.weightpic.blank?
-        <no image>
-      - else
-        %img{src: weigh_in.weightpic.url(:medium)}
-      %li
-        = "Today I weigh: #{weigh_in.currentweight} lbs."
-      %li
-        = "What I did to get to this weight: #{weigh_in.description}"
-      %li
-        =render partial: 'comments/comment', locals: {weigh_in: weigh_in, user: @user, comment: @comment, comments: @comments}
-      - if @user == current_user
+  %h4 Weigh-Ins
+  %ul 
+    - if @user.weigh_ins.length == 0
+      %p No Weigh-Ins Yet!
+    -else
+      - @user.weigh_ins.reverse_each do |weigh_in|
+        - next if weigh_in.new_record?
+        %h5 
+          = "Weigh-in ##{weigh_in.id}: #{weigh_in.created_at.strftime("%m/%d/%y at %l:%M%P")}"
+        - if weigh_in.weightpic.blank?
+          <no image>
+        - else
+          %img{src: weigh_in.weightpic.url(:medium)}
         %li
-          %span
-          = link_to 'Edit', '#' 
-          \|
-          %span
-          = link_to ' Delete', '#', method: :delete, data: { confirm: 'Are you sure?' }
-      %br
-      %br
+          = "Today I weigh: #{weigh_in.currentweight} lbs."
+        %li
+          = "What I did to get to this weight: #{weigh_in.description}"
+        %li
+          =render partial: 'comments/comment', locals: {weigh_in: weigh_in, user: @user, comment: @comment, comments: @comments}
+        - if @user == current_user
+          %li
+            %span
+            = link_to 'Edit', '#' 
+            \|
+            %span
+            = link_to ' Delete', '#', method: :delete, data: { confirm: 'Are you sure?' }
+        %br
+        %br
 
 %br
 %br
