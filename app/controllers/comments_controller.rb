@@ -11,6 +11,8 @@ class CommentsController < ApplicationController
 
 	def create
     @comment = Comment.new(comment_params)
+    @comment.user_id = params[:user_id]
+    @comment.weigh_in_id = params[:weigh_in_id]
     @comment.save
     @user = User.find(params[:user_id])
     redirect_to @user
@@ -19,7 +21,7 @@ class CommentsController < ApplicationController
 private
 
   def comment_params
-    params.require(:comment).permit(:comment)
+    params.require(:comment).permit(:comment, :user_id, :weigh_in_id)
   end
 
 end
