@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @weigh_ins = @user.weigh_ins
     @weigh_in = WeighIn.new user_id: @user.id
+    @comment = Comment.new
   end
 
   def index

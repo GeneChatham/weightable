@@ -16,6 +16,7 @@
 
 %table
   %thead.users
+    %th.users 
     %th.users Name
     %th.users About
     - if current_user != nil
@@ -23,6 +24,7 @@
   %tbody
   - @users.each do |user|
     %tr
+      %td= user.profilepic
       %td= link_to user.name, user
       %td= user.bio
       - if current_user != nil

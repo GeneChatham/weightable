@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   mount_uploader :profilepic, ImageUploader
 
   has_many :weigh_ins
-  has_many :comments
+  has_many :comments, through: :weigh_ins
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
