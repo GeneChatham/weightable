@@ -10,7 +10,7 @@
     - if weigh_in.comments == nil
       <no comments>
     - else
-      - weigh_in.comments.each do |text|
+      - weigh_in.comments.reverse_each do |text|
         %li.small
           = text.created_at.strftime("%m/%d/%y")
         %li 
