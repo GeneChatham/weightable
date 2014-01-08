@@ -1,8 +1,9 @@
 Weightable::Application.routes.draw do
 
+  get "static_pages/landing"
   devise_for :users
 
-  root 'users#index'
+  root 'static_pages#landing'
 
   resources :friendships
 

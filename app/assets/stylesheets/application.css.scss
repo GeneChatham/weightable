@@ -11,6 +11,35 @@
  *= require_self
  *= require_tree .
  */
+//************HomePage******************************//
+.bg {
+  background: url(bg.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  opacity: 50%;
+}
+
+li a {
+	text-decoration: none;
+}
+
+.hmpg.signed-in {
+	-webkit-box-shadow: 5px 5px 3px 3px #000000;
+	box-shadow: 5px 5px 3px 3px #000000;
+	text-decoration: none;
+}
+
+.hmpg.signed-out {
+
+}
+
+
+
+
+
+
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
 main {
